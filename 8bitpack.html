@@ -107,7 +107,7 @@
         <div id="paypal-button-container"></div>
       </div>
     </div>
-  <script src="https://www.paypal.com/sdk/js?client-id=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AWb70ME3JUyMLayz9cg4NQkimHFSpqS9C5CJaaJQr7OyK1vGYZnE6w0SAAwCqi2PSyXklToIhhIS4yxX&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
   <script>
     function initPayPalButton() {
       paypal.Buttons({
@@ -121,7 +121,7 @@
 
         createOrder: function(data, actions) {
           return actions.order.create({
-            purchase_units: [{"amount":{"currency_code":"EUR","value":1.5}}]
+            purchase_units: [{"amount":{"currency_code":"USD","value":1.5}}]
           });
         },
 
@@ -132,9 +132,9 @@
             console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
 
             // Show a success message within this page, e.g.
-            actions.redirect('https://test.jokesmm2shop.xyz/order/youtubel');
+ actions.redirect('https://test.jokesmm2shop.xyz/order/youtube');
 
-            // Or go to another URL:  actions.redirect('https://test.jokesmm2shop.xyz/order/youtubel');
+            // Or go to another URL:  actions.redirect('https://test.jokesmm2shop.xyz/order/youtube');
             
           });
         },
