@@ -103,47 +103,51 @@
                       <h3> $<strong class="price_text">1.80</strong></h3>
                        <h4>8bitpack</h4>
                        <div id="smart-button-container">
-                        <div style="text-align: center;">
-                          <div id="paypal-button-container"></div>
-                        </div>
-                      </div>
-                    <script src="https://www.paypal.com/sdk/js?client-id=AWb70ME3JUyMLayz9cg4NQkimHFSpqS9C5CJaaJQr7OyK1vGYZnE6w0SAAwCqi2PSyXklToIhhIS4yxX&enable-funding=venmo&currency=EUR" data-sdk-integration-source="button-factory"></script>
-                    <script>
-                      function initPayPalButton() {
-                        paypal.Buttons({
-                          style: {
-                            shape: 'rect',
-                            color: 'blue',
-                            layout: 'vertical',
-                            label: 'paypal',
-                            
-                          },
-                  
-                          createOrder: function(data, actions) {
-                            return actions.order.create({
-                              purchase_units: [{"description":"8bit pack","amount":{"currency_code":"EUR","value":1.2}}]
-                            });
-                          },
-                  
-                          onApprove: function(data, actions) {
-                            return actions.order.capture().then(function(orderData) {
-                              
-                              // Full available details
-                              console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
-                  actions.redirect('https://complete.secretguard.xyz/order/bundle/random/8bit/thank_you.html');
-                  
-                              // Or go to another URL:  actions.redirect('thank_you.html');
-                              
-                            });
-                          },
-                  
-                          onError: function(err) {
-                            console.log(err);
-                          }
-                        }).render('#paypal-button-container');
-                      }
-                      initPayPalButton();
-                    </script>
+      <div style="text-align: center;">
+        <div id="paypal-button-container"></div>
+      </div>
+    </div>
+  <script src="https://www.paypal.com/sdk/js?client-id=AWb70ME3JUyMLayz9cg4NQkimHFSpqS9C5CJaaJQr7OyK1vGYZnE6w0SAAwCqi2PSyXklToIhhIS4yxX&enable-funding=venmo&currency=EUR" data-sdk-integration-source="button-factory"></script>
+  <script>
+    function initPayPalButton() {
+      paypal.Buttons({
+        style: {
+          shape: 'rect',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'paypal',
+          
+        },
+
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{"amount":{"currency_code":"EUR","value":1.5}}]
+          });
+        },
+
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(orderData) {
+            
+            // Full available details
+            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+            // Show a success message within this page, e.g.
+            const element = document.getElementById('paypal-button-container');
+            element.innerHTML = '';
+            element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+            // Or go to another URL:  actions.redirect('thank_you.html');
+            
+          });
+        },
+
+        onError: function(err) {
+          console.log(err);
+        }
+      }).render('#paypal-button-container');
+    }
+    initPayPalButton();
+  </script>
                           <div>
   <a class="buy-with-crypto"
      href="https://commerce.coinbase.com/checkout/4b808836-6985-4497-ae47-25e653f76f7d">
